@@ -1,8 +1,7 @@
-// Importa las funciones que necesitas de los SDK que necesitas
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
-// Configuración de tu aplicación Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyCsU3D3RgIqXzrRggw64kMlv6ua1UNayFY",
     authDomain: "vue-retail-38e98.firebaseapp.com",
@@ -13,8 +12,8 @@ const firebaseConfig = {
     measurementId: "G-1CPHR9YJQ7",
 };
 
-// Inicializa Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app); // Cambia esto a getFirestore
+const db = getFirestore(app);
+const auth = getAuth(app);
 
-export { db };
+export { db, auth };
