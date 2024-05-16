@@ -1,17 +1,17 @@
 <template>
     <div class="create-order-container">
-        <h1>Create New Order</h1>
+        <h1>Crear nuevo pedido</h1>
 
         <form @submit.prevent="submitOrder">
-            <input v-model="newOrder.orderNumber" placeholder="Order Number" class="input-style" />
+            <input v-model="newOrder.orderNumber" placeholder="Número de pedido" class="input-style" />
 
             <table class="product-selection-table">
                 <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Add</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Agregar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,27 +19,27 @@
                         <td>{{ product.name }}</td>
                         <td>${{ product.price }}</td>
                         <td>
-                            <input type="number" v-model="product.quantity" min="0" placeholder="Quantity"
+                            <input type="number" v-model="product.quantity" min="0" placeholder="Cantidad"
                                 class="input-style" />
                         </td>
                         <td>
                             <button type="button" @click="addProductToOrder(product)" class="add-button"
-                                :disabled="isProductAdded(product)">Add</button>
+                                :disabled="isProductAdded(product)">Agregar</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <h2>Selected Products:</h2>
+            <h2>Productos seleccionados:</h2>
             <ul>
                 <li v-for="(item, index) in newOrder.products" :key="index">
-                    {{ item.name }} - Qauntity: {{ item.quantity }} - Total: {{ item.total }}
-                    <button @click="removeProductFromOrder(index)" class="btn-small btn danger">Remove</button>
+                    {{ item.name }} - Cantidad: {{ item.quantity }} - Total: {{ item.total }}
+                    <button @click="removeProductFromOrder(index)" class="btn-small btn-danger">Eliminar</button>
                 </li>
             </ul>
-            <p><strong>Order Total: {{ newOrder.total }}</strong></p>
+            <p><strong>Total del pedido: {{ newOrder.total }}</strong></p>
 
-            <button type="submit" class="submit-button">Submit Order</button>
+            <button type="submit" class="submit-button">Enviar pedido</button>
 
         </form>
     </div>
@@ -121,50 +121,84 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
 .create-order-container {
     max-width: 800px;
     margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    min-height: 100vh;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #37474f;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input[type="number"],
-input[type="text"] {
+.input-style {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
 }
 
-button {
-    font-size: 1rem
+.product-selection-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-selection-table th,
+.product-selection-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.product-selection-table th {
+    background-color: #f5f5f5;
+    color: #37474f;
 }
 
 .add-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     background-color: #007bff;
     color: white;
+    transition: background-color 0.3s;
 }
 
 .add-button:hover {
-    background-color: #0056b3;
+    background-color: #0069d9;
 }
 
 .submit-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     background-color: #28a745;
     color: white;
+    transition: background-color 0.3s;
 }
 
 .submit-button:hover {
@@ -194,6 +228,10 @@ li {
 .btn-danger {
     background-color: #dc3545;
     color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 4px;
 }
 
 .btn-danger:hover {
@@ -203,11 +241,5 @@ li {
 h2,
 p {
     margin-top: 20px;
-}
-
-.product-selection-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
 }
 </style>

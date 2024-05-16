@@ -1,13 +1,13 @@
 <template>
     <div class="order-list-container">
-        <h1>Order List</h1>
+        <h1>Lista de pedidos</h1>
 
         <table class="orders-table">
             <thead>
                 <tr>
-                    <th>Order Number</th>
+                    <th>Número de pedido</th>
                     <th>Total</th>
-                    <th>Action</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody>
@@ -15,14 +15,12 @@
                     <td>{{ order.orderNumber }}</td>
                     <td>{{ order.total }}</td>
                     <td>
-                        <button class="btn-small btn-danger" @click="deleteOrders(order.id)">Delete</button>
+                        <button class="btn-small btn-danger" @click="deleteOrders(order.id)">Eliminar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <router-link to="/create-order" class="add-order-link">Add New Order</router-link>
-
-
+        <router-link to="/create-order" class="add-order-link">Agregar nuevo pedido</router-link>
     </div>
 </template>
 
@@ -55,18 +53,37 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
 .order-list-container {
     max-width: 800px;
     margin: auto;
-    padding: 20px;
-    
+    padding: 2rem;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #37474f;
 }
 
 .orders-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .orders-table th,
@@ -76,31 +93,38 @@ export default {
     text-align: left;
 }
 
-.orders-table {
+.orders-table th {
     background-color: #f5f5f5;
+    color: #37474f;
 }
 
-.btn-small.btn-danger {
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     background-color: #dc3545;
     color: white;
+    transition: background-color 0.3s;
 }
 
-.btn-small:hover,
-.btn-small.btn-danger:hover {
-    opacity: 0.8;
+.btn-small:hover {
+    background-color: #c82333;
 }
 
 .add-order-link {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 15px;
+    padding: 0.5rem 1rem;
     text-decoration: none;
-    background-color: #007b77;
+    background-color: #007bff;
     color: white;
     border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 .add-order-link:hover {
-    background-color: #0056b3;
+    background-color: #0069d9;
 }
 </style>
